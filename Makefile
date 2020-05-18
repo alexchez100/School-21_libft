@@ -63,6 +63,10 @@ $(NAME): $(SRCS_N) libft.h
 bonus: 
 	@$(MAKE) WITH_BONUS_C=1 WITH_BONUS_O=1 all
 
+so: 
+	gcc -c -fPIC ft_*.c
+	gcc -shared -o libft.so ft_*.o
+
 clean:
 	@/bin/rm -f *.o
 

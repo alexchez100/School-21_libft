@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 22:33:40 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/13 22:33:41 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 14:03:39 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ char		*ft_itoa(int n)
 	len = 0;
 	if (n == (-2147483648))
 	{
-		if (!(str = (char*)malloc(sizeof(char) * 12)))
+		if (!(str = (char*)malloc(sizeof(char*) * 12)))
 			return (NULL);
-		str = "-2147483648";
+		str = "-2147483648\0";
 		return (str);
 	}
 	if (n < 0)

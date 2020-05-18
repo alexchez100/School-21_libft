@@ -6,14 +6,13 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 02:07:38 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/16 02:38:18 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/16 22:00:19 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 

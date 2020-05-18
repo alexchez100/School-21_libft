@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 20:05:59 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/13 21:45:26 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 13:27:41 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 int			ft_atoi(const char *str)
 {
-	int		i;
-	int		j;
 	int		nb;
+	int		flag;
 
-	i = 0;
-	j = 0;
 	nb = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	flag = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if ((*str == '+' || *str == '-'))
+		flag = (*str++) == '-' ? -1 : 1;
+	while (*str == '0')
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
-		j = i;
-		i++;
+		nb = nb * 10 + flag * ((*str++) - '0');
+		if (((nb > 0) && (flag < 0)) || ((nb < 0) && (flag > 0)))
+			return ((1 + flag) / 2 * (-1));
 	}
-	while (str[i] > 47 && str[i] < 58)
-	{
-		nb = nb * 10 + str[i] - 48;
-		i++;
-	}
-	if (str[j] == '-')
-		nb = nb * (-1);
-	return (nb);
+	return ((int)nb);
 }

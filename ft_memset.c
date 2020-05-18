@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 23:09:14 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/13 23:09:15 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/17 00:20:37 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void				*ft_memset(void *s, int c, size_t n)
 	unsigned char	*p;
 
 	p = s;
+	if (n == 0)
+		return (s);
 	while (n--)
 		*p++ = (unsigned char)c;
 	return (s);
