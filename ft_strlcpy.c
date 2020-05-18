@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 00:12:56 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/14 22:07:44 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 14:53:19 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 size_t			ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	char		*d;
 	const char	*s;
 
-	d = dst;
 	s = src;
 	if (size != 0)
 	{
-		while ((--size != 0) && (*s != '\0'))
-		{
-			*d++ = *s++;
-		}
-		*d = '\0';
+		while (--size && *s)
+			*dst++ = *s++;
+		*dst = '\0';
 	}
 	while (*s)
 		s++;
-	return (size_t)(s - src);
+	return (s - src);
 }

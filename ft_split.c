@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 23:53:47 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/16 12:58:25 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 14:18:47 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char		**ft_split(char const *s, char c)
 		i++;
 		str++;
 	}
-	*str = '\0';
+	*str = NULL;
 	free(ft_end(s, c));
 	free(ft_begin(s, c));
 	return (str - ft_len(s, c));
