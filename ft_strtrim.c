@@ -6,46 +6,33 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/14 00:29:22 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/18 13:54:10 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 21:31:38 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_cpy_dop(char *new, char const *s1, size_t start, size_t end)
+static int	ft_dop_set(char const *start_2, char const *set)
 {
-	size_t	i;
-
-	i = 0;
-	while (end - start + 1)
-	{
-		new[i] = *(s1 + start);
-		s1++;
-		i++;
-		end--;
-	}
-	new[i] = 0;
-	return (new);
+	while (*start_2 != *set && *set)
+		set++;
+	if (*start_2 == *set)
+		return (1);
+	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char		*ft_strtrim(char const *start, char const *set)
 {
-	size_t	start;
-	size_t	end;
-	char	*new;
+	char	*final;
 
-	start = 0;
-	if ((set == 0) || (s1 == 0))
+	if (!start || !set)
 		return (NULL);
-	while (s1[start] && ft_strchr(set, s1[start]))
+	while (*start && ft_dop_set(start, set))
 		start++;
-	end = ft_strlen(s1) - 1;
-	if (end)
-		while (s1[end] && ft_strchr(set, s1[end]) && end)
-			end--;
-	if (!end)
-		return (NULL);
-	if (!(new = (char*)malloc(sizeof(*new) * ((end - start) + 1))))
-		return (NULL);
-	return (ft_cpy_dop(new, s1, start, end));
+	final = (char *)start;
+	while (*final)
+		final++;
+	while ((final - start) != 0 && ft_dop_set(final, set))
+		final--;
+	return (ft_substr(start, 0, final + 1 - start));
 }

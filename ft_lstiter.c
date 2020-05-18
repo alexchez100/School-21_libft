@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 22:49:47 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/13 22:49:48 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 22:09:03 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
+	if (!lst)
+		return ;
 	while (lst)
 	{
 		f(lst->content);

@@ -6,13 +6,13 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 23:53:47 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/18 14:18:47 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 21:28:12 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_len(char const *s, char c)
+static int	ft_len(char const *s, char c)
 {
 	int		n;
 
@@ -28,7 +28,7 @@ int			ft_len(char const *s, char c)
 	return (n);
 }
 
-int			*ft_begin(char const *s, char c)
+static int	*ft_begin(char const *s, char c)
 {
 	int		*begin;
 	int		i;
@@ -52,7 +52,7 @@ int			*ft_begin(char const *s, char c)
 	return (begin - ft_len(s, c));
 }
 
-int			*ft_end(char const *s, char c)
+static int	*ft_end(char const *s, char c)
 {
 	int		*end;
 	int		i;
@@ -71,7 +71,7 @@ int			*ft_end(char const *s, char c)
 	return (end - ft_len(s, c));
 }
 
-void		ft_copy_eb(char *str, char const *s, int begin, int end)
+static void	ft_copy_eb(char *str, char const *s, int begin, int end)
 {
 	int		i;
 

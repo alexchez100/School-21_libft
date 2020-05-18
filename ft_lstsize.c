@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 22:55:20 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/13 22:55:21 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 22:15:49 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ int			ft_lstsize(t_list *lst)
 	int		i;
 
 	i = 0;
-	a = lst;
-	while (a)
+	if (!lst)
+		return (0);
+	while (lst)
 	{
 		i++;
-		a = a->next;
+		lst = lst->next;
 	}
 	return (i);
 }

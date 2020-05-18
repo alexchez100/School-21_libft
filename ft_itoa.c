@@ -6,61 +6,42 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 22:33:40 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/18 14:58:54 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/18 21:31:09 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_len_len(int n_n)
+static int	ft_len_int(int n)
 {
-	int		len_len;
+	int	i;
 
-	len_len = 0;
-	if (n_n == 0)
-		return (1);
-	while (n_n > 0)
-	{
-		n_n = n_n / 10;
-		len_len++;
-	}
-	return (len_len);
-}
-
-char		*ft_itoa_dop(int n, int len, char *str)
-{
-	str[len] = '\0';
-	if (n == 0)
-		str[len - 1] = '0';
-	else
-	{
-		while (n > 0)
-		{
-			str[len - 1] = n % 10 + '0';
-			n = n / 10;
-			len--;
-		}
-		if (len == 1)
-			str[0] = '-';
-	}
-	return (str);
+	i = 0;
+	while ((n /= 10) != 0)
+		i++;
+	return (i + 1);
 }
 
 char		*ft_itoa(int n)
 {
-	char	*str;
-	int		len;
+	char	*res;
+	int		flag;
+	int		i;
 
-	len = 0;
-	if (n == (-2147483648))
-		return ("-2147483648");
+	i = ft_len_int(n) + 1;
+	flag = 1;
 	if (n < 0)
 	{
-		n = n * (-1);
-		len++;
+		flag = -1;
+		i++;
 	}
-	len += ft_len_len(n);
-	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
+	if (!(res = ft_calloc(sizeof(char), i)))
 		return (NULL);
-	return (ft_itoa_dop(n, len, str));
+	i = i - 2;
+	*(res + i) = (n % 10) * flag + '0';
+	while (i-- && (n /= 10) != 0)
+		*(res + i) = (n % 10) * flag + '0';
+	if (flag == -1)
+		*res = '-';
+	return (res);
 }
