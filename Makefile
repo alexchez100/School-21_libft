@@ -37,31 +37,23 @@ OBJECTS_B=ft_lstadd_back.o ft_lstadd_front.o ft_lstclear.o ft_lstdelone.o \
 
 INCLUDES=./
 
-ifdef WITH_BONUS_C
-SRCS_N = $(SRCS) $(SRCS_B)
-else
-SRCS_N = $(SRCS)
-endif
-
-ifdef WITH_BONUS_O
-OBJECTS_N = $(OBJECTS) $(OBJECTS_B)
-else
-OBJECTS_N = $(OBJECTS)
-endif
-
 .PHONY: all, re, clean, fclean, bonus
 
 all: $(NAME)
 
 $(NAME): $(SRCS_N) libft.h
 	@echo "start>>>>>>>"
-	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS_N)
+	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
 	@ar rc $(NAME) $(OBJECTS_N)
 	@ranlib $(NAME)
 	@echo "end<<<<<<<"
 
 bonus: 
-	@$(MAKE) WITH_BONUS_C=1 WITH_BONUS_O=1 all
+	@echo "start2222>>>>>>>"
+	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS) $(SRCS_B)
+	@ar rc $(NAME) $(OBJECTS) $(OBJECTS_B)
+	@ranlib $(NAME)
+	@echo "end2222<<<<<<<"
 
 so: 
 	gcc -c -fPIC ft_*.c

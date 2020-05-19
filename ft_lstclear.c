@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 22:47:22 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/18 21:41:37 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/19 18:19:25 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*a;
 
-	if (!lst || !*lst)
+	if (!lst || !*lst || !del)
 		return ;
 	while (*lst)
 	{
