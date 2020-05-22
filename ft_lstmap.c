@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 18:07:02 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/19 18:20:53 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/23 01:18:13 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstclear(&a, del);
 			return (NULL);
 		}
-		ft_lstadd_back(&a, (ft_lstnew(f(lst->content))));
+		else
+			ft_lstadd_back(&a, (ft_lstnew(f(lst->content))));
 		lst = lst->next;
 	}
 	return (a);
