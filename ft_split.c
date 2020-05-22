@@ -6,105 +6,80 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 23:53:47 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/18 21:28:12 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/23 00:29:05 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len(char const *s, char c)
+static void	ff_clean(char **res, int i)
 {
-	int		n;
-
-	n = 0;
-	if (*s != c)
-		n++;
-	while (*(s + 1))
+	while (i)
 	{
-		if (*s == c && *(s + 1) != c)
-			n++;
-		s++;
+		free(*res--);
+		i--;
 	}
-	return (n);
 }
 
-static int	*ft_begin(char const *s, char c)
+static int	ff_numeric(char const *s, char c)
 {
-	int		*begin;
-	int		i;
+	size_t	words;
+
+	words = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (!*s)
+			break ;
+		while (*s && *s != c)
+			s++;
+		words++;
+	}
+	return (words);
+}
+
+static int	word_division(char **res, char const *s, char c)
+{
+	char	*st;
+	size_t	i;
 
 	i = 0;
-	begin = (int*)malloc(ft_len(s, c) * sizeof(int));
-	if (s[0] != c)
+	while (*s)
 	{
-		*begin = 0;
-		begin++;
-	}
-	while (s[i + 1])
-	{
-		if (s[i] == c && s[i + 1] != c)
+		while (*s == c)
+			s++;
+		if (!*s)
+			break ;
+		st = (char*)s;
+		while (*s && *s != c)
+			s++;
+		i++;
+		if (!(*res = ft_substr(st, 0, s - st)) || i == 3)
 		{
-			*begin = i + 1;
-			begin++;
+			ff_clean(res, i);
+			return (0);
 		}
-		i++;
+		res++;
 	}
-	return (begin - ft_len(s, c));
-}
-
-static int	*ft_end(char const *s, char c)
-{
-	int		*end;
-	int		i;
-
-	i = 0;
-	end = (int*)malloc(ft_len(s, c) * sizeof(int));
-	while (s[i])
-	{
-		if ((s[i] != c && s[i + 1] == c) || (s[i] != c && s[i + 1] == 0))
-		{
-			*end = i + 1;
-			end++;
-		}
-		i++;
-	}
-	return (end - ft_len(s, c));
-}
-
-static void	ft_copy_eb(char *str, char const *s, int begin, int end)
-{
-	int		i;
-
-	i = 0;
-	while ((i + begin) != end)
-	{
-		str[i] = s[i + begin];
-		i++;
-	}
-	str[i] = '\0';
+	*res = NULL;
+	return (1);
 }
 
 char		**ft_split(char const *s, char c)
 {
-	int		i;
-	char	**str;
+	size_t	n;
+	char	**res;
 
-	i = 0;
-	if (s == 0 || *s == 0)
+	if (!s)
 		return (NULL);
-	if (!(str = (char**)malloc(sizeof(char*) * (ft_len(s, c) + 1))))
+	n = ff_numeric(s, c);
+	if (!(res = (char**)malloc(sizeof(char*) * (n + 1))))
 		return (NULL);
-	while (i < ft_len(s, c))
+	if (!word_division(res, s, c))
 	{
-		if (!(*str = (char*)malloc(sizeof(char) * (ft_end(s, c)[i] -
-					ft_begin(s, c)[i] + 1))))
-			return (NULL);
-		ft_copy_eb(*str, s, ft_begin(s, c)[i], ft_end(s, c)[i]);
-		i++;
-		str++;
+		free(res);
+		return (NULL);
 	}
-	*str = NULL;
-	free(ft_end(s, c));
-	free(ft_begin(s, c));
-	return (str - ft_len(s, c));
+	return (res);
 }

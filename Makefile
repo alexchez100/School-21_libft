@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile.sh                                        :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: gsansa <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/14 14:09:52 by gsansa            #+#    #+#              #
-#    Updated: 2020/05/14 15:53:02 by gsansa           ###   ########.fr        #
+#    Updated: 2020/05/23 00:12:41 by gsansa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,14 +41,14 @@ INCLUDES=./
 
 all: $(NAME)
 
-$(NAME): $(SRCS_N) libft.h
+$(NAME): $(SRCS) libft.h
 	@echo "start>>>>>>>"
 	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
 	@ar rc $(NAME) $(OBJECTS_N)
 	@ranlib $(NAME)
 	@echo "end<<<<<<<"
 
-bonus: 
+bonus:
 	@echo "start2222>>>>>>>"
 	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS) $(SRCS_B)
 	@ar rc $(NAME) $(OBJECTS) $(OBJECTS_B)
