@@ -6,7 +6,7 @@
 /*   By: gsansa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 23:53:47 by gsansa            #+#    #+#             */
-/*   Updated: 2020/05/23 00:29:05 by gsansa           ###   ########.fr       */
+/*   Updated: 2020/05/23 01:08:01 by gsansa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	word_division(char **res, char const *s, char c)
 		while (*s && *s != c)
 			s++;
 		i++;
-		if (!(*res = ft_substr(st, 0, s - st)) || i == 3)
+		if (!(*res = ft_substr(st, 0, s - st)))
 		{
 			ff_clean(res, i);
 			return (0);

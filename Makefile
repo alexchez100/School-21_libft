@@ -6,7 +6,7 @@
 #    By: gsansa <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/14 14:09:52 by gsansa            #+#    #+#              #
-#    Updated: 2020/05/23 00:12:41 by gsansa           ###   ########.fr        #
+#    Updated: 2020/05/23 01:06:43 by gsansa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ all: $(NAME)
 $(NAME): $(SRCS) libft.h
 	@echo "start>>>>>>>"
 	@gcc -Wall -Wextra -Werror -I$(INCLUDES) -c $(SRCS)
-	@ar rc $(NAME) $(OBJECTS_N)
+	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
 	@echo "end<<<<<<<"
 
